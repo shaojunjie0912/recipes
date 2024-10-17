@@ -162,8 +162,9 @@ alias dv='deactivate'
 alias rmvenv='deactivate && rm -rf .env'
 
 # update config
-alias uz='cp ~/.zshrc ~/recipes/zsh'
-
-alias uc='cd ~/recipes && git add . && git commit -m "update" && git push && cd -'
+alias upzsh='cp ~/.zshrc ~/recipes/zsh'
+alias upnvim='cp -r ~/.config/nvim/lua/user ~/recipes/neovim/'
+alias uptmux='cp ~/.config/tmux/tmux.conf ~/recipes/tmux/'
+alias upconfig='git -C ~/recipes add . && git -C ~/recipes commit -m "update" && git -C ~/recipes push'
 
 source /usr/share/nvm/init-nvm.sh
