@@ -135,6 +135,10 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
 
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 alias t='tmux'
 alias le="nvim leetcode.nvim"
 
@@ -151,7 +155,15 @@ alias cmc='cmake -B build'
 alias rb='rm -rf build/'
 alias cmb='cmake --build build --parallel 16'
 
-source /usr/share/nvm/init-nvm.sh
+# venv
+alias mkvenv='python -m venv .env'
+alias av='source .env/bin/activate'
+alias dv='deactivate'
+alias rmvenv='deactivate && rm -rf .env'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# update config
+alias uz='cp ~/.zshrc ~/recipes/zsh'
+
+alias uc='cd ~/recipes && git add . && git commit -m "update" && git push && cd -'
+
+source /usr/share/nvm/init-nvm.sh
