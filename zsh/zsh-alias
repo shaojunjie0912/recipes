@@ -1,0 +1,30 @@
+alias t='tmux'
+alias le="nvim leetcode.nvim"
+
+# proxy
+alias sp='source ~/.proxy'
+alias wg='wget www.google.com'
+
+# zsh
+alias nz='nvim ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# CMake
+alias cmc='cmake -B build'
+alias rb='rm -rf build/'
+alias cmb='cmake --build build --parallel 16'
+
+# venv
+alias mkvenv='python -m venv .env'
+alias av='source .env/bin/activate'
+alias dv='deactivate'
+alias rmvenv='deactivate && rm -rf .env'
+
+# update config
+alias pszsh='cp ~/.zshrc ~/recipes/zsh'
+alias psnvim='cp -r ~/.config/nvim/lua/user ~/recipes/neovim/'
+alias pstmux='cp ~/.config/tmux/tmux.conf ~/recipes/tmux/'
+alias psconfig='git -C ~/recipes add . && git -C ~/recipes commit -m "update" && git -C ~/recipes push'
+
+alias plzsh='git -C ~/recipes pull && cp ~/recipes/zsh/.zshrc ~ && source ~/.zshrc'
+
