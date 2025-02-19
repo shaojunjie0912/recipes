@@ -1,4 +1,5 @@
 local options = {
+	-- Example
 	autoindent = true,
 	cursorcolumn = false,
 }
