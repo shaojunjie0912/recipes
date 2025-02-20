@@ -3,7 +3,6 @@ local settings = {}
 settings["use_ssh"] = true
 settings["colorscheme"] = "catppuccin-latte"
 settings["use_copilot"] = true
--- settings["format_notify"] = false
 
 settings["disabled_plugins"] = {
 	"ray-x/go.nvim",
