@@ -1,0 +1,11 @@
+alias t='tmux'
+alias s='exec zsh'
+alias f='fastfetch'
+alias install='paru -S'
+alias update='paru -Syu'
+alias xmf='xmake configure'
+alias xmb='xmake build'
+alias xmr='xmake run'
+alias le='nvim leetcode.nvim'
+alias g='git'
+

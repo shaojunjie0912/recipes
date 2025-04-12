@@ -1,0 +1,21 @@
+[user]
+	email = shaojunjie0912@outlook.com
+	name = shaojunjie0912
+[alias]
+	st = status
+	a = add
+	ad = add .
+	co = checkout
+	com = checkout main
+	cob = checkout -b
+	br = branch
+	cm = commit
+	cmm = commit -m
+	lg = log
+	rlg = reflog
+	fc = fetch
+	pl = pull
+	ps = push
+
+
+
