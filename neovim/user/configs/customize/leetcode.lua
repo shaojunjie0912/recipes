@@ -21,5 +21,8 @@ return function()
 				after = { "int main() {", "    return 0;", "}" },
 			},
 		},
+		description = {
+			width = "50%",
+		},
 	})
 end
