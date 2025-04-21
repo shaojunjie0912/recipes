@@ -9,7 +9,20 @@ return function()
 		injector = {
 			["cpp"] = {
 				before = {
-					"#include <bits/stdc++.h>",
+					"#include <algorithm>",
+					"#include <climits>",
+					"#include <cmath>",
+					"#include <cstdint>",
+					"#include <iostream>",
+					"#include <map>",
+					"#include <queue>",
+					"#include <set>",
+					"#include <stack>",
+					"#include <string>",
+					"#include <unordered_map>",
+					"#include <unordered_set>",
+					"#include <utility>",
+					"#include <vector>",
 					"",
 					-- 链表节点 & 节点 & 二叉树节点
 					'#include "include/list_node.hpp"',
@@ -22,7 +35,7 @@ return function()
 			},
 		},
 		description = {
-			width = "50%",
+			width = "45%",
 		},
 	})
 end
