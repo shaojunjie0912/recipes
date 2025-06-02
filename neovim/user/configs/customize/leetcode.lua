@@ -7,14 +7,29 @@ return function()
 		},
 		lang = "cpp",
 		injector = {
+			["python3"] = {
+				before = {
+					"from typing import List, Dict, Tuple, Literal",
+					"from functools import cache",
+					"from math import inf",
+				},
+				after = {
+					'if __name__ == "__main__":',
+					"    pass",
+				},
+			},
 			["cpp"] = {
 				before = {
 					"#include <algorithm>",
+					"#include <array>",
 					"#include <climits>",
 					"#include <cmath>",
 					"#include <cstdint>",
+					"#include <functional>",
 					"#include <iostream>",
+					"#include <list>",
 					"#include <map>",
+					"#include <numeric>",
 					"#include <queue>",
 					"#include <set>",
 					"#include <stack>",
@@ -31,7 +46,11 @@ return function()
 					"",
 					"using namespace std;",
 				},
-				after = { "int main() {", "    return 0;", "}" },
+				-- after = {
+				-- 	"int main() {",
+				-- 	"    return 0;",
+				-- 	"}",
+				-- },
 			},
 		},
 		description = {
