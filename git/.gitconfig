@@ -1,10 +1,11 @@
 [user]
-	email = shaojunjie0912@outlook.com
+	email = shaojunjie0912@163.com
 	name = shaojunjie0912
 [alias]
 	st = status
 	a = add
 	ad = add .
+	cl = clone
 	co = checkout
 	com = checkout main
 	cob = checkout -b
@@ -16,6 +17,12 @@
 	fc = fetch
 	pl = pull
 	ps = push
+	sub = submodule
+[init]
+        defaultBranch = main
 
-
-
+[core]
+	autocrlf = false
+	filemode = false
+[color]
+	ui = true
