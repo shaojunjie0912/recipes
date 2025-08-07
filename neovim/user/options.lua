@@ -1,5 +1,7 @@
 local options = {
-	cursorcolumn = false,
+	-- Example
+	autoindent = true,
+	cursorcolumn = false
 }
 
 return options
