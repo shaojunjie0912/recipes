@@ -31,7 +31,7 @@ struct ControlBlock {
     virtual ~ControlBlock() = default;
 };
 
-// 默认删除器 (重载括号运算符 -> 变成函数对象)
+// 默认删除器 (重载括号运算符 -> 变成可调用对象)
 template <typename T>
 struct DefaultDeleter {
     void operator()(T* ptr) const { delete ptr; }
