@@ -19,8 +19,7 @@
 	ps = push
 	sub = submodule
 [init]
-        defaultBranch = main
-
+    defaultBranch = main
 [core]
 	autocrlf = false
 	filemode = false
