@@ -39,6 +39,8 @@ struct DefaultDeleter {
 
 template <typename T>
 class SharedPtr {
+    template <typename U>
+    friend class SharedPtr;  // 允许所有 SharedPtr<U> 访问私有成员
 public:
     // 默认构造函数，创建一个空的 SharedPtr
     SharedPtr() noexcept = default;
@@ -158,9 +160,6 @@ public:
     auto operator<=>(std::nullptr_t) const noexcept { return p_ <=> nullptr; }
 
 private:
-    template <typename U>
-    friend class SharedPtr;  // 允许所有 SharedPtr<U> 访问私有成员
-
     // NOTE: 经典 Release !!
     void Release() {
         if (!cb_) {
@@ -175,6 +174,7 @@ private:
         cb_ = nullptr;
     }
 
+private:
     T* p_{nullptr};
     ControlBlock* cb_{nullptr};
 };

@@ -15,7 +15,8 @@ int main() {
         std::vector<spdlog::sink_ptr> sinks;
         sinks.push_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
         // true表示清空旧文件
-        sinks.push_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/test3.log"));
+        sinks.push_back(
+            std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/test3.log", true));
 
         // 2. 使用 sinks 列表创建 logger
         auto combined_logger =
@@ -26,6 +27,7 @@ int main() {
 
         // 4. 设置日志级别和格式
         combined_logger->set_level(spdlog::level::info);
+        combined_logger->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [thread %t] %v");
         combined_logger->info("This message goes to both console and file.");
         combined_logger->warn("So does this one.");
 
