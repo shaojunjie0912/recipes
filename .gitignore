@@ -2,5 +2,6 @@ build/
 .xmake/
 .cache/
 logs/
+*.out
 compile_commands.json
 
