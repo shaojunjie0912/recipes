@@ -53,7 +53,7 @@ private:
     //  建堆 (从无序数组) NOTE: SiftDown
     // 从后往前找非叶节点, 依次向下堆化 NOTE: 叶子节点已经是堆了, 所以不需要考虑
     // 第一个非叶节点: 最后一个叶子节点的父节点
-    // 时间复杂度: O(n) 不是 O(nlogn) NOTE: O(n) 有数学证明
+    // 时间复杂度: O(n) 不是 O(nlogn) NOTE: O(n) 有数学证明, 底层节点数量>顶层
     void BuildHeap() {
         for (int i = Parent(Size() - 1); i >= 0; --i) {
             SiftDown(i);
@@ -74,21 +74,21 @@ private:
     // 自顶置底堆化 (比较 i 和 l r 左右子节点, 与最大的交换)
     void SiftDown(int i) {
         while (true) {
-            int up = i;  // 初始化 up 为 i (up 表示需要上浮)
+            int max = i;  // 初始化 up 为 i (up 表示需要上浮)
             int l = Left(i), r = Right(i);
-            // 跟 data_[l] 比较看是否更新 up
-            if (l < Size() && cmp_(data_[up], data_[l])) {  // NOTE: 子节点不能越界
-                up = l;
+            // 跟 data_[l] 比较看是否更新 up NOTE: 子节点不能越界
+            if (l < Size() && cmp_(data_[max], data_[l])) {  // NOTE: 这里是跟 nums[max] 比
+                max = l;
             }
-            // 跟 data_[r] 比较看是否更新 up
-            if (r < Size() && cmp_(data_[up], data_[r])) {  // NOTE: 子节点不能越界
-                up = r;
+            // 跟 data_[r] 比较看是否更新 up // NOTE: 子节点不能越界
+            if (r < Size() && cmp_(data_[max], data_[r])) {  // NOTE: 这里是跟 nums[max] 比
+                max = r;
             }
-            if (up == i) {  // 如果 up 没有被更新还是 i 则堆化结束
+            if (max == i) {  // 如果 up 没有被更新还是 i 则堆化结束
                 break;
             }
-            std::swap(data_[i], data_[up]);  // data_[i] 与需要上浮的交换
-            i = up;                          // 更新 i 进行下一轮
+            std::swap(data_[i], data_[max]);  // data_[i] 与需要上浮的交换
+            i = max;                          // 更新 i 进行下一轮
         }
     }
 

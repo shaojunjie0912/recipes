@@ -6,34 +6,7 @@ using namespace std;
 // 快速排序
 namespace quick_sort {
 
-// 以pivot划分区间:
-// < pivot 和 pivot 和 >= pivot
-// 选最后一个元素作为 pivot
-// [l, r]
-int Partition1(vector<int>& nums, int l, int r) {
-    int pivot = nums[r];
-    int i = 0;                    // i: 小于 pivot 区域最后一个元素的下一个位置
-    for (int j{0}; j < r; ++j) {  // j 从头到尾遍历数组(不包括pivot)
-        if (nums[j] < pivot) {    // 符合 <pivot 就跟 nums[i] 交换
-            std::swap(nums[j], nums[i]);
-            ++i;  // i 右移一位
-        }
-    }
-    std::swap(nums[i], nums[r]);  // 最后交换pivot到中间
-    return i;
-}
-
-// [l, r]
-void Sort1(vector<int>& nums, int l, int r) {
-    if (l >= r) {  // 区间为空/只有一个元素直接返回
-        return;
-    }
-    int p = Partition1(nums, l, r);
-    Sort1(nums, l, p - 1);
-    Sort1(nums, p + 1, r);
-}
-
-// 优化基准数选取: 首-中-尾的中位数 [时间复杂度最坏O(n^2)->O(nlogn)]
+// 优化基准数选取: 首-中-尾的中位数 [时间复杂度最坏O(n^2)的概率降低]
 int MedianThree(vector<int>& nums, int left, int mid, int right) {
     int l{nums[left]}, m{nums[mid]}, r{nums[right]};
     if ((m <= l && l <= r) || (r <= l && l <= m)) {  // l 是中位数
@@ -45,45 +18,40 @@ int MedianThree(vector<int>& nums, int left, int mid, int right) {
     return right;  // r 是中位数
 }
 
-int Partition2(vector<int>& nums, int l, int r) {
+// [l, r] 闭区间选最后一个元素作为 pivot
+// 以 pivot 划分区间: < pivot 和 pivot 和 >= pivot
+int Partition(vector<int>& nums, int l, int r) {
     int pivot_idx = MedianThree(nums, l, l + (r - l) / 2, r);
     int pivot = nums[pivot_idx];
     std::swap(nums[pivot_idx], nums[r]);  // 把基准数移动到最右边 (因为把nums[right]作为基准数)
 
-    int i = 0;                    // i: 小于 pivot 区域最后一个元素的下一个位置
-    for (int j{0}; j < r; ++j) {  // j 从头到尾遍历数组(不包括pivot)
+    // NOTE: 这里 i 初始化为 l(eft)
+    int i = l;  // i: 小于 pivot 区域最后一个元素的下一个位置
+    // NOTE: 这里 j 初始化为 l(eft)
+    for (int j = l; j < r; ++j) {  // j 从l到r-1遍历数组(不包括r)
         // 符合 <pivot 就跟 nums[i] 交换
         if (nums[j] < pivot) {  // NOTE: 比较的是 pivot 不是nums[pivot]!!
             std::swap(nums[j], nums[i]);
-            ++i;  // i 右移一位 NOTE: 在if里面!!
+            ++i;  // NOTE: 别忘了 ++i
         }
     }
     std::swap(nums[i], nums[r]);  // 最后交换pivot到中间
     return i;
 }
 
-void Sort2(vector<int>& nums, int l, int r) {
-    if (l >= r) {  // 区间为空/只有一个元素直接返回
-        return;
-    }
-    int p = Partition2(nums, l, r);
-    Sort2(nums, l, p - 1);
-    Sort2(nums, p + 1, r);
-}
-
 // 优化递归深度: 模拟尾递归 [空间复杂度最坏O(n)->O(logn)]
 // 小分区: 递归
 // 大分区: 递归->循环
-void Sort3(vector<int>& nums, int left, int right) {
+void Sort(vector<int>& nums, int left, int right) {
     // NOTE: 退出条件被while包含了 (仍然不考虑一个元素)
     while (left < right) {
-        int p = Partition2(nums, left, right);
-        if (p - left < right - p) {     // 左边小: 递归
-            Sort3(nums, left, p - 1);   // NOTE: p 已经分好, 考虑 p - 1
-            left = p + 1;               // 右边大: 更新左边界, 循环
-        } else {                        // 右边小: 递归
-            Sort3(nums, p + 1, right);  // NOTE: p 已经分好, 考虑 p + 1
-            right = p - 1;              // 左边大: 更新右边界, 循环
+        int p = Partition(nums, left, right);
+        if (p - left < right - p) {    // 左边小: 递归
+            Sort(nums, left, p - 1);   // NOTE: p 已经分好, 考虑 p - 1
+            left = p + 1;              // 右边大: 更新左边界, 循环
+        } else {                       // 右边小: 递归
+            Sort(nums, p + 1, right);  // NOTE: p 已经分好, 考虑 p + 1
+            right = p - 1;             // 左边大: 更新右边界, 循环
         }
     }
 }
@@ -106,6 +74,7 @@ void Merge(vector<int>& nums, int l, int m, int r) {
             tmp[k++] = nums[j++];
         }
     }
+    // 跟合并两个有序链表一样, 处理剩余的
     while (i <= m) {
         tmp[k++] = nums[i++];
     }
@@ -114,7 +83,7 @@ void Merge(vector<int>& nums, int l, int m, int r) {
     }
     // tmp -> nums
     for (int i = 0; i < n; ++i) {
-        nums[l + i] = tmp[i];  // NOTE: 数组索引偏移
+        nums[l + i] = tmp[i];  // NOTE: nums 数组索引偏移 l + i
     }
 }
 
@@ -140,19 +109,19 @@ namespace heap_sort {
 // n: 堆当前的有效长度 (因为每排序一个元素堆长度都会减一)
 void SiftDown(vector<int>& nums, int i, int n) {
     while (true) {
-        int up = i;
+        int max = i;
         int l = 2 * i + 1, r = 2 * i + 2;
-        if (l < n && nums[l] > nums[up]) {
-            up = l;
+        if (l < n && nums[l] > nums[max]) {  // NOTE: 这里是跟 nums[max] 比
+            max = l;
         }
-        if (r < n && nums[r] > nums[up]) {
-            up = r;
+        if (r < n && nums[r] > nums[max]) {  // NOTE: 这里是跟 nums[max] 比
+            max = r;
         }
-        if (up == i) {
+        if (max == i) {
             break;
         }
-        std::swap(nums[i], nums[up]);
-        i = up;
+        std::swap(nums[i], nums[max]);
+        i = max;
     }
 }
 
@@ -167,7 +136,7 @@ void Sort(vector<int>& nums) {
         // 交换堆顶和堆底
         std::swap(nums[0], nums[i]);  // i 是堆底节点(尾)
         // 堆化
-        SiftDown(nums, 0, i);  // 堆化每次从堆顶开始, 堆长度要递减
+        SiftDown(nums, 0, i);  // 堆化每次从堆顶 0 开始, 堆长度要递减, 长度就是 i
     }
 }
 
@@ -176,8 +145,16 @@ void Sort(vector<int>& nums) {
 int main() {
     vector<int> nums{3, 2, 5, 6, 4, 9, 8, 10, 7};
     int n = nums.size();
-    // quick_sort::Sort3(nums, 0, n - 1);
-    // merge_sort::Sort(nums, 0, n - 1);
+    quick_sort::Sort(nums, 0, n - 1);
+    for (auto& x : nums) {
+        cout << x << ' ';
+    }
+    cout << '\n';
+    merge_sort::Sort(nums, 0, n - 1);
+    for (auto& x : nums) {
+        cout << x << ' ';
+    }
+    cout << '\n';
     heap_sort::Sort(nums);
     for (auto& x : nums) {
         cout << x << ' ';
