@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <vector>
 
 using namespace std;
@@ -6,24 +7,15 @@ using namespace std;
 // 快速排序
 namespace quick_sort {
 
-// 优化基准数选取: 首-中-尾的中位数 [时间复杂度最坏O(n^2)的概率降低]
-int MedianThree(vector<int>& nums, int left, int mid, int right) {
-    int l{nums[left]}, m{nums[mid]}, r{nums[right]};
-    if ((m <= l && l <= r) || (r <= l && l <= m)) {  // l 是中位数
-        return left;
-    }
-    if ((l <= m && m <= r) || (r <= m && m <= l)) {  // m 是中位数
-        return mid;
-    }
-    return right;  // r 是中位数
-}
+// 随机数生成引擎
+std::mt19937 gen{std::random_device{}()};
 
 // [l, r] 闭区间选最后一个元素作为 pivot
 // 以 pivot 划分区间: < pivot 和 pivot 和 >= pivot
 int Partition(vector<int>& nums, int l, int r) {
-    int pivot_idx = MedianThree(nums, l, l + (r - l) / 2, r);
-    int pivot = nums[pivot_idx];
-    std::swap(nums[pivot_idx], nums[r]);  // 把基准数移动到最右边 (因为把nums[right]作为基准数)
+    std::uniform_int_distribution<int> dist{l, r};
+    std::swap(nums[dist(gen)], nums[r]);  // 把基准数移动到最右边 (因为把nums[right]作为基准数)
+    int pivot = nums[r];
 
     // NOTE: 这里 i 初始化为 l(eft)
     int i = l;  // i: 小于 pivot 区域最后一个元素的下一个位置
