@@ -1,23 +1,6 @@
 [user]
 	email = shaojunjie0912@163.com
 	name = shaojunjie0912
-[alias]
-	st = status
-	a = add
-	ad = add .
-	cl = clone
-	co = checkout
-	com = checkout main
-	cob = checkout -b
-	br = branch
-	cm = commit
-	cmm = commit -m
-	lg = log
-	rlg = reflog
-	fc = fetch
-	pl = pull
-	ps = push
-	sub = submodule
 [init]
     defaultBranch = main
 [core]
@@ -25,3 +8,4 @@
 	filemode = false
 [color]
 	ui = true
+
