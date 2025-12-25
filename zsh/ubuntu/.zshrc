@@ -6,8 +6,10 @@ alias c='clear'
 alias t='tmux'
 alias s='exec zsh'
 alias f='fastfetch'
-alias p="export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897"
+alias p="export https_proxy=http://127.0.0.1:30012 http_proxy=http://127.0.0.1:30012 all_proxy=socks5://127.0.0.1:30012" # DT 服务器
 alias up="unset http_proxy https_proxy all_proxy"
+alias np='nvtop'
+alias hp='htop'
 
 # 构建
 alias xmf='xmake configure'
