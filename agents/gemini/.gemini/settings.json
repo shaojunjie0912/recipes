@@ -1,0 +1,48 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    },
+    "enablePermanentToolApproval": true
+  },
+  "general": {
+    "previewFeatures": true,
+    "disableUpdateNag": true
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "model": {
+    "name": "gemini-3-pro-preview"
+  },
+  "tools": {
+    "autoAccept": true,
+    "allowed": [
+      "run_shell_command",
+      "write_file",
+      "replace",
+      "web_fetch",
+      "google_web_search",
+      "read_file",
+      "read_many_files",
+      "list_directory",
+      "search_file_content",
+      "glob",
+      "write_todos",
+      "save_memory",
+      "delegate_to_agent"
+    ]
+  },
+  "mcpServers": {
+    "augment-context-engine": {
+      "command": "auggie",
+      "args": [
+        "--mcp"
+      ],
+      "env": {
+        "AUGMENT_API_TOKEN": "ace_a71a44bc0123bbfc54cabc23bd67e767ec48a0ce",
+        "AUGMENT_API_URL": "https://acemcp.heroman.wtf/relay/"
+      }
+    }
+  }
+}

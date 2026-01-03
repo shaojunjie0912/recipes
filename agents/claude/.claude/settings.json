@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://claude-for.me",
+    "ANTHROPIC_AUTH_TOKEN": "JSgzyGKYV8W",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-5-20251101",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-5-20250929",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5-20251001",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "32000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "API_TIMEOUT_MS": "600000",
+    "BASH_DEFAULT_TIMEOUT_MS": "600000",
+    "BASH_MAX_TIMEOUT_MS": "600000",
+    "MCP_TIMEOUT": "30000",
+    "MCP_TOOL_TIMEOUT": "600000",
+    "CLAUDE_API_TIMEOUT": "600000"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__augment-context-engine__*",
+      "mcp__tavily__*",
+      "Bash(auggie:*)",
+      "Bash(claude:*)",
+      "Bash(codex:*)",
+      "Bash(gemini:*)",
+      "Bash(python /home/sjj/.claude/skills/collaborating-with-gemini/scripts/gemini_bridge.py:*)",
+      "Bash(python /home/sjj/.claude/skills/collaborating-with-codex/scripts/codex_bridge.py:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "model": "opus"
+}

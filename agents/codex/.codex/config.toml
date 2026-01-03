@@ -1,0 +1,105 @@
+# ----------------------------------------------
+# ------------ Codex 基础设置 ------------------
+# ----------------------------------------------
+model_provider = "codex-for-me"
+model = "gpt-5.2"
+model_reasoning_effort = "medium"
+disable_response_storage = true
+
+[features]
+web_search_request = true
+unified_exec = true
+
+[model_providers.codex-for-me]
+name = "codex-for-me"
+base_url = "https://api-vip.codex-for.me/v1"
+wire_api = "responses"
+requires_openai_auth = true
+
+[mcp_servers."augment-context-engine"]
+command = "auggie"
+args = ["--mcp"]
+
+[mcp_servers."augment-context-engine".env]
+AUGMENT_API_TOKEN = "ace_a71a44bc0123bbfc54cabc23bd67e767ec48a0ce"
+AUGMENT_API_URL = "https://acemcp.heroman.wtf/relay/"
+
+[mcp_servers.tavily]
+command = "npx"
+args = ["-y", "tavily-mcp@latest"]
+
+[mcp_servers.tavily.env]
+TAVILY_API_KEY = "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"
+
+
+# ------------------------------------------------
+# ------------ 项目信任级别设置 ------------------
+# ------------------------------------------------
+[projects."/home/sjj"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/OldVersion"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace"]
+trust_level = "trusted"
+
+[projects."/home/sjj/.codex"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/TAB"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/Main"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/Main/DataProcessor"]
+trust_level = "trusted"
+
+[projects."/home/sjj/.config/tmux"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/Main/MTSAD"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/antissh"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/Main/CutePaper"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/M2N2"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/Main/M2N2"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AnomalyDetection/New"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/MissingImputation"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/AI"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/llm"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/MissingImputation/TSMI"]
+trust_level = "trusted"
+
+[projects."/home/sjj/.claude"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/LLM"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/LLM/skills"]
+trust_level = "trusted"
+
+[projects."/home/sjj/.gemini"]
+trust_level = "trusted"
+
+[projects."/home/sjj/Workspace/Agents"]
+trust_level = "trusted"
