@@ -5,3 +5,26 @@ logs/
 *.out
 compile_commands.json
 
+
+# ----------------------------------------
+# ---------------- agents ----------------
+# ----------------------------------------
+# 先忽略 agents 下所有内容（但保留指定文件）
+# 注意：如果先忽略整个目录（如 /agents/），Git 默认不会继续进入该目录匹配否定规则；
+# 需要先“放行”中间目录，再放行具体文件。
+
+# claude：只保留这 3 个
+/agents/.claude/*
+!/agents/.claude/CLAUDE.md
+!/agents/.claude/cc-cx-gi.md
+!/agents/.claude/settings.json
+
+# codex：只保留这 2 个
+/agents/.codex/*
+!/agents/.codex/config.toml
+!/agents/.codex/AGENTS.md
+
+# gemini：只保留这 2 个
+/agents/.gemini/*
+!/agents/.gemini/GEMINI.md
+!/agents/.gemini/settings.json
