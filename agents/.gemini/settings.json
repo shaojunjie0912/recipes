@@ -1,7 +1,10 @@
 {
+  "ide": {
+    "enabled": true
+  },
   "security": {
     "auth": {
-      "selectedType": "oauth-personal"
+      "selectedType": "gemini-api-key"
     },
     "enablePermanentToolApproval": true
   },
@@ -36,9 +39,7 @@
   "mcpServers": {
     "augment-context-engine": {
       "command": "auggie",
-      "args": [
-        "--mcp"
-      ],
+      "args": ["--mcp"],
       "env": {
         "AUGMENT_API_TOKEN": "ace_a71a44bc0123bbfc54cabc23bd67e767ec48a0ce",
         "AUGMENT_API_URL": "https://acemcp.heroman.wtf/relay/"
